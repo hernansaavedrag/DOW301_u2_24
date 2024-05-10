@@ -9,8 +9,18 @@ class EquiposController extends Controller
 {
     public function index(){
         $equipos = Equipo::all();
-        dd($equipos);
+        #$equipos = Equipo::orderBy('id','desc')->get();
+        //dd($equipos);
         #return view('equipos.index',['equipos'=>$equipos]);
         return view('equipos.index',compact('equipos'));
+    }
+
+    public function store(Request $request){
+        #dd($request->entrenador);
+        $equipo = new Equipo();
+        $equipo->nombre = $request->nombre;
+        $equipo->entrenador = $request->entrenador;
+        $equipo->save();
+        return redirect()->route('equipos.index');
     }
 }
