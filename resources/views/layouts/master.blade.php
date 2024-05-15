@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-custom.min.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Home</title>
 </head>
 
@@ -44,11 +45,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                        <li class="nav-item ">
+                            <a class="nav-link @if(Route::current()->getName()=='home.index') active @endif" href="{{route('home.index')}}">Inicio</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/equipos">Equipos</a>
+                        <li class="nav-item ">
+                            <a class="nav-link @if(Route::current()->getName()=='equipos.index') active @endif"  href="{{route('equipos.index')}}">Equipos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Estadios</a>
@@ -56,8 +57,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Estadísticas</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Jugadores</a>
+                        <li class="nav-item ">
+                            <a class="nav-link @if(Route::current()->getName()=='jugadores.index') active @endif" href="{{route('jugadores.index')}}">Jugadores</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Partidos</a>
