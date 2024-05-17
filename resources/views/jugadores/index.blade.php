@@ -20,6 +20,7 @@
                             <th>Nombre</th>
                             <th>Posición</th>
                             <th>Número</th>
+                            <th>Equipo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -31,6 +32,10 @@
                             <td class="align-middle">{{$jugador->nombre}}</td>
                             <td class="align-middle">{{$jugador->posicion}}</td>
                             <td class="align-middle">{{$jugador->numero}}</td>
+                            <td class="align-middle">
+                                {{$jugador->equipo!=null?$jugador->equipo->nombre:'Sin equipo'}}
+                                <!--condicion v? si verdadero : sino falso -->
+                            </td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-danger pb-0" data-bs-toggle="tooltip" data-bs-title="Borrar {{$jugador->nombre}}"
                                     data-bs-title="Borrar Jugador">
@@ -56,15 +61,49 @@
                 <div class="card">
                     <div class="card-header bg-dark text-white">Agregar Jugadores</div>
                     <div class="card-body">
-                        <form method="POST" action="{{route('equipos.store')}}">
+                        <form method="POST" action="{{route('jugadores.store')}}">
                             @csrf
                             <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" id="nombre" name="nombre"  class="form-control">
+                                <label for="apellido" class="form-label">Apellido:</label>
+                                <input type="text" id="apellido" name="apellido"  class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label for="entrenador" class="form-label">Entrenador</label>
-                                <input type="text" id="entrenador" name="entrenador"  class="form-control">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" id="nombre" name="nombre"  class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="posicion">Posición:</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" id="pos-arquero" name="posicion" value="Arquero">
+                                        <label for="pos-arquero" class="form-check-lable">Arquero</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" id="pos-defensa" name="posicion" value="Defensa">
+                                        <label for="pos-defensa" class="form-check-lable">Defensa</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" id="pos-volante" name="posicion" value="Volante">
+                                        <label for="pos-volante" class="form-check-lable">Volante</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" id="pos-delantero" name="posicion" value="Delantero">
+                                        <label for="pos-delantero" class="form-check-lable">Delantero</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="numero">Número Camiseta:</label>
+                                <input class="form-control" type="number" name="numero" id="numero" min="1" max="99">
+                            </div>
+                            <div class="form-group">
+                                <label for="equipo">Equipo</label>
+                                <select class="form-control" name="equipo" id="equipo">
+                                    @foreach ($equipos as $equipo)
+                                        <option value="{{$equipo->id}}">{{$equipo->nombre}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-3 d-grid gap-2 d-lg-block">
                                 <button  type="reset" class="btn btn-warning">Cancelar</button>
