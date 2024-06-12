@@ -10,4 +10,8 @@ class Rol extends Model
     use HasFactory;
 
     protected $table = 'roles';
+
+    public function usuarios(){
+        return $this->hasMany('App\Models\Usuario');
+    }
 }
